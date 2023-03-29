@@ -1,91 +1,92 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+"use client";
 
-const inter = Inter({ subsets: ['latin'] })
+import { Bebas_Neue } from "next/font/google";
+import styles from "./page.module.css";
+import { Text, Navbar } from "@/app/components";
+import { motion, useTransform, useViewportScroll } from "framer-motion";
+import { useEffect } from "react";
 
-export default function Home() {
+const bebas_neue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
+
+export default function Homae() {
+  const { scrollYProgress } = useViewportScroll();
+  const width = useTransform(scrollYProgress, [0, 1], ["30%", "100%"]);
+  const translateX = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
+  const moveRight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className={styles.main + " px-7 pt-3"}>
+      <Navbar className={"flex"}>
+        <div className="flex flex-row">
+          <Text className="" variant="combine">
+            Yamani
+          </Text>
+          <Text className="" variant="combine">
+            Yuda
+          </Text>
+        </div>
+      </Navbar>
+      <div className="w-[100%]">
+        <div className="flex justify-between items-center">
+          <motion.div
+            initial="visible"
+            style={{ translateX }}
+            viewport={{ once: true }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <Text
+              className={
+                bebas_neue.className +
+                " text-[280px] uppercase tracking-tight cursor-pointer hover:text-white"
+              }
+              variant="sigle"
+            >
+              Front
+            </Text>
+          </motion.div>
+          <motion.div
+            initial="visible"
+            style={{ width }}
+            viewport={{ once: true }}
+            className="min-w-[30%] h-[30px] bg-[#aaa] hover:bg-white"
+          ></motion.div>
+          <motion.div
+            initial="visible"
+            style={{ translateX: moveRight }}
+            viewport={{ once: true }}
+          >
+            <Text
+              className={
+                bebas_neue.className +
+                " text-[280px] uppercase tracking-tight cursor-pointer hover:text-white"
+              }
+              variant="sigle"
+            >
+              End
+            </Text>
+          </motion.div>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
+      <div className="w-[100%] mt-[-150px] flex justify-between items-center">
+        <Text
+          className={
+            bebas_neue.className +
+            " text-[280px] uppercase tracking-tight cursor-pointer hover:text-white"
+          }
+          variant="sigle"
+        >
+          Developer
+        </Text>
+        <div className="ml-11">
+          <Text className="" variant="combine">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+            commodi vel eum corporis alias fuga dolor quis. Fuga, beatae hic.
+            Modi aliquam dolor quae, numquam earum quo suscipit ab magnam.
+          </Text>
         </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
       </div>
     </main>
-  )
+  );
 }

@@ -1,45 +1,106 @@
 "use client";
 
-import { Bebas_Neue } from "next/font/google";
+import { Bebas_Neue, Open_Sans } from "next/font/google";
 import styles from "./page.module.css";
-import { Text, Navbar } from "@/app/components";
-import { motion, useTransform, useViewportScroll } from "framer-motion";
-import { useEffect } from "react";
+import { Text, Navbar, Button } from "@/app/components";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useViewportScroll,
+} from "framer-motion";
+import {
+  MouseEventHandler,
+  RefObject,
+  WheelEventHandler,
+  useEffect,
+  useRef,
+} from "react";
 
 const bebas_neue = Bebas_Neue({
   weight: "400",
+  style: "normal",
   subsets: ["latin"],
 });
 
-export default function Homae() {
-  const { scrollYProgress } = useViewportScroll();
-  const width = useTransform(scrollYProgress, [0, 1], ["30%", "100%"]);
-  const translateX = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
-  const moveRight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+const open_sans = Open_Sans({
+  subsets: ["latin"],
+});
 
+const NavbarSection = () => {
   return (
-    <main className={styles.main + " px-7 pt-3"}>
-      <Navbar className={"flex"}>
-        <div className="flex flex-row">
+    <Navbar className="w-100 overflow-hidden">
+      <motion.div
+        initial={{ translateY: "100%" }}
+        animate={{ translateY: "0%" }}
+        whileInView={"onscreen"}
+        transition={{ ease: "easeOut" }}
+        style={{
+          transition: "all 2s cubic-bezier(0.165, 0.84, 0.44, 1)",
+        }}
+        viewport={{ once: true }}
+        className="grid grid-cols-4 "
+      >
+        <div className="flex flex-col">
           <Text className="" variant="combine">
             Yamani
           </Text>
-          <Text className="" variant="combine">
+          <Text className={" tracking-[6px]"} variant="combine">
             Yuda
           </Text>
         </div>
-      </Navbar>
-      <div className="w-[100%]">
-        <div className="flex justify-between items-center">
+        <div className="">
+          <div>FRONTEND DEVELOPER</div>
+          <div>FOLIO / 2023</div>
+        </div>
+        <div className="col-span-2 text-end align-middle">
+          <Button className="border rounded border-zinc-500 m-2" to="#hai">
+            Contact
+          </Button>
+        </div>
+      </motion.div>
+    </Navbar>
+  );
+};
+
+const HeaderTitle = ({
+  containerRef,
+}: {
+  containerRef: RefObject<HTMLElement>;
+}) => {
+  const { scrollYProgress } = useViewportScroll();
+  const scaleX = useTransform(scrollYProgress, [0, 1], ["1", "8"]);
+  const translateX = useTransform(scrollYProgress, [0, 0.5], ["0%", "-100%"]);
+  const moveRight = useTransform(scrollYProgress, [0, 0.5], ["-10%", "100%"]);
+
+  return (
+    <>
+      <div className="h-[22vw] flex items-center justify-between overflow-y-hidden w-100">
+        <motion.div
+          initial={{ translateY: "100%" }}
+          animate={{ translateY: "0%" }}
+          whileInView={"onscreen"}
+          transition={{ ease: "easeOut", delay: 1 }}
+          style={{
+            transition: "all 2s cubic-bezier(0.165, 0.84, 0.44, 1)",
+          }}
+          className="h-[22vw] flex items-center justify-between overflow-hidden w-[100%] pr-2"
+          viewport={{ once: true }}
+        >
           <motion.div
-            initial="visible"
-            style={{ translateX }}
+            transition={{ ease: "easeOut" }}
+            style={{
+              translateX,
+              transition: "all 2s cubic-bezier(0.165, 0.84, 0.44, 1)",
+            }}
+            whileInView={"onscreen"}
+            className="h-[22vw]  flex items-center"
             viewport={{ once: true }}
           >
             <Text
               className={
                 bebas_neue.className +
-                " text-[280px] uppercase tracking-tight cursor-pointer hover:text-white"
+                " uppercase tracking-[-20px] text-[23vw] cursor-pointer hover:text-white"
               }
               variant="sigle"
             >
@@ -47,46 +108,111 @@ export default function Homae() {
             </Text>
           </motion.div>
           <motion.div
+            transition={{ ease: "easeOut" }}
             initial="visible"
-            style={{ width }}
+            whileInView={"onscreen"}
+            style={{
+              scaleX,
+              transition: "transform 2s cubic-bezier(0.165, 0.84, 0.44, 1)",
+            }}
             viewport={{ once: true }}
-            className="min-w-[30%] h-[30px] bg-[#aaa] hover:bg-white"
+            className="h-[30px] min-w-[20%] bg-[#aaa] hover:bg-white"
           ></motion.div>
           <motion.div
-            initial="visible"
-            style={{ translateX: moveRight }}
+            transition={{ ease: "easeOut" }}
+            whileInView={"onscreen"}
+            style={{
+              translateX: moveRight,
+              transition: "all 2s cubic-bezier(0.165, 0.84, 0.44, 1)",
+            }}
+            className="h-[22vw]  flex items-center"
             viewport={{ once: true }}
           >
             <Text
               className={
                 bebas_neue.className +
-                " text-[280px] uppercase tracking-tight cursor-pointer hover:text-white"
+                " uppercase tracking-[-20px] text-[23vw] cursor-pointer hover:text-white"
               }
               variant="sigle"
             >
               End
             </Text>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
-      <div className="w-[100%] mt-[-150px] flex justify-between items-center">
-        <Text
-          className={
-            bebas_neue.className +
-            " text-[280px] uppercase tracking-tight cursor-pointer hover:text-white"
-          }
-          variant="sigle"
+      <div className="h-[22vw] flex items-center mt-[-25px] justify-between overflow-hidden w-100">
+        <motion.div
+          initial={{ translateY: "100%" }}
+          animate={{ translateY: "0%" }}
+          transition={{ type: "spring", delay: 1 }}
+          whileInView={"onscreen"}
+          style={{
+            transition: "all 2s cubic-bezier(0.165, 0.84, 0.44, 1)",
+          }}
+          className="h-[22vw] flex items-center justify-between overflow-hidden w-[100%] pr-2"
+          viewport={{ once: true }}
         >
-          Developer
-        </Text>
-        <div className="ml-11">
-          <Text className="" variant="combine">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            commodi vel eum corporis alias fuga dolor quis. Fuga, beatae hic.
-            Modi aliquam dolor quae, numquam earum quo suscipit ab magnam.
-          </Text>
-        </div>
+          <motion.div
+            transition={{ type: "spring" }}
+            style={{
+              translateX,
+              transition: "all 2s cubic-bezier(0.165, 0.84, 0.44, 1)",
+            }}
+            className="h-[22vw]  flex items-center"
+            viewport={{ once: true }}
+          >
+            <Text
+              className={
+                bebas_neue.className +
+                " uppercase tracking-[-20px] text-[23vw] cursor-pointer hover:text-white"
+              }
+              variant="sigle"
+            >
+              Developer
+            </Text>
+          </motion.div>
+        </motion.div>
+        <motion.div
+          initial={{ translateY: "100%" }}
+          animate={{ translateY: "0%" }}
+          transition={{ type: "spring", delay: 1.4 }}
+          whileInView={"onscreen"}
+          style={{
+            transition: "all 2s cubic-bezier(0.165, 0.84, 0.44, 1)",
+          }}
+          className="h-[22vw] mt-12 flex w-[400px] flex-col justify-between"
+          viewport={{ once: true }}
+        >
+          <div>
+            <span className={open_sans.className + " text-white"}>About </span>
+            <span className={open_sans.className + " text-[#aaa]"}>
+              Hi, I am Yamani, a frontend developer, I have more than a year of
+              work experience and I love coding and art
+            </span>
+          </div>
+          <div className="mb-[100px]">
+            <span>Scroll Down</span>
+          </div>
+        </motion.div>
       </div>
+    </>
+  );
+};
+
+export default function Homae() {
+  const containerRef = useRef<HTMLElement>(null);
+
+  return (
+    <main className={styles.main + " px-9 pt-3"} ref={containerRef}>
+      <section>
+        <NavbarSection />
+      </section>
+      <section className="mt-16">
+        <HeaderTitle containerRef={containerRef} />
+      </section>
+      <section>
+        
+      </section>
     </main>
   );
 }

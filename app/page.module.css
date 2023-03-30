@@ -1,12 +1,25 @@
 .main {
   background: #111;
-  color: #aaa;
+  color: #777;
   min-height: 300vh;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
   -ms-overflow-style: none;
   scrollbar-width: none; 
+}
+
+.main::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollhide {
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+}
+
+.scrollhide::-webkit-scrollbar {
+  display: none;
 }
 
 .description {

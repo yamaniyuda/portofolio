@@ -1,7 +1,7 @@
 .main {
   background: #111;
   color: #777;
-  min-height: 300vh;
+  min-height: 100vh;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;

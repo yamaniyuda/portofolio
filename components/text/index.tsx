@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TextProps } from "@/app/components/types";
+import { TextProps } from "@/components/types";
 
 const Text = ({ className, variant, children }: TextProps) => {
   return (

@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Yamani. Yuda",
-  description: "My portofolio 2023",
+  description: "My portofolio 2024",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

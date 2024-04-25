@@ -362,7 +362,7 @@ export const SectionFive = () => {
           </Text>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row items-center justify-center">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
         <Link href="https://trello-clone.yamaniyuda.com/">
           <div className="flex overflow-x-auto md:ml-5 my-2 bg-[#383838] w-[18em] h-[23em] shadow hover:shadow-gray-400 cursor-pointer flex-col items-center rounded p-4">
             <Image
@@ -444,6 +444,63 @@ export const SectionFive = () => {
             </div>
           </div>
         </Link>
+        <Link href="https://github.com/yamaniyuda/pos_application_mobile">
+          <div className="flex overflow-x-auto md:ml-5 my-2 bg-[#383838] w-[18em] h-[23em] shadow hover:shadow-gray-400 cursor-pointer flex-col items-center rounded p-4">
+            <Image
+              src="assets/github-mark/github-mark-white.svg"
+              alt="github-logo"
+              width="80"
+              height="80"
+              className="mt-5"
+            ></Image>
+            <div className="mt-5 flex flex-col">
+              <span className="text-white text-4xl text-center items-center justify-center">
+                Pos Application Mobile
+              </span>
+              <span className="text-center mt-6">
+                Project membuuat aplikasi post untuk supplier baju, project ini telah menggunakan flutter dan telah menerapkan clean architecture.
+              </span>
+            </div>
+          </div>
+        </Link>
+        <Link href="https://github.com/yamaniyuda/reparke">
+          <div className="flex overflow-x-auto md:ml-5 my-2 bg-[#383838] w-[18em] h-[23em] shadow hover:shadow-gray-400 cursor-pointer flex-col items-center rounded p-4">
+            <Image
+              src="assets/github-mark/github-mark-white.svg"
+              alt="github-logo"
+              width="80"
+              height="80"
+              className="mt-5"
+            ></Image>
+            <div className="mt-5 flex flex-col">
+              <span className="text-white text-4xl text-center items-center justify-center">
+                Reparke
+              </span>
+              <span className="text-center mt-6">
+                Projek ini adalah aplikasi untuk report parkir
+              </span>
+            </div>
+          </div>
+        </Link>
+        <Link href="https://github.com/yamaniyuda/e_wallet_mobile">
+          <div className="flex overflow-x-auto md:ml-5 my-2 bg-[#383838] w-[18em] h-[23em] shadow hover:shadow-gray-400 cursor-pointer flex-col items-center rounded p-4">
+            <Image
+              src="assets/github-mark/github-mark-white.svg"
+              alt="github-logo"
+              width="80"
+              height="80"
+              className="mt-5"
+            ></Image>
+            <div className="mt-5 flex flex-col">
+              <span className="text-white text-4xl text-center items-center justify-center">
+                E Wallet Mobile
+              </span>
+              <span className="text-center mt-6">
+                Projek adalah aplikasi e wallet dan konek ke pembayaran online menggunakan mitrans
+              </span>
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );
@@ -453,7 +510,7 @@ export const SectionSix = () => {
   return (
     <div className="flex justify-center p-3">
       <div className="grid grid-cols-4 w-[10%]">
-        <Link href="https://github.com/yamani59">
+        <Link href="https://github.com/yamaniyuda">
           <Image
             src="assets/github-mark/github-mark-white.svg"
             alt="github-iconn"
@@ -462,7 +519,7 @@ export const SectionSix = () => {
             className="cursor-pointer"
           ></Image>
         </Link>
-        <Link href="https://www.linkedin.com/in/yamani-yuda-989300219/">
+        <Link href="https://www.linkedin.com/in/yamani-yuda/">
           <Image
             src="assets/images/linked.svg"
             alt="github-iconn"
